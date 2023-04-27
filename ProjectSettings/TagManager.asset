@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Missile
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Car
+  - CrashElements
+  - SafeMode
+  - CarDebrisInteraction
+  - Wheel
+  - Debris
+  - CarHead
+  - ObjectSmasher
+  - SplineProjector
+  - Trigger
+  - Stop-block
+  - Sand
+  - PointsObject
+  - Walls
+  - Tubes
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
