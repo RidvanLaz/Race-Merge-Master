@@ -48,13 +48,7 @@
         [Space(10)]
         [Toggle(DR_VERTEX_COLORS_ON)] _VertexColorsEnabled("Enable Vertex Colors", Int) = 0
 
-        //_FLAT_KIT_BUILT_IN_BEGIN_
         _LightContribution("[FOLDOUT(Advanced Lighting){4}]Light Color Contribution", Range(0, 1)) = 0
-        //_FLAT_KIT_BUILT_IN_END_
-        /*_FLAT_KIT_URP_BEGIN_
-        _LightContribution("[FOLDOUT(Advanced Lighting){5}]Light Color Contribution", Range(0, 1)) = 0
-        _LightFalloffSize("Falloff size (point / spot)", Range(0.0001, 1)) = 0.0001
-        _FLAT_KIT_URP_END_*/
 
         // Used to provide light direction to cel shading if all light in the scene is baked.
         [Header(Override light direction)]
@@ -104,7 +98,7 @@
 
         CGPROGRAM
         // Doc: https://docs.unity3d.com/Manual/SL-SurfaceShaders.html
-        #pragma surface surfObject DustyroomStylized vertex:vertObject alphatest:_Cutoff addshadow
+        #pragma surface surfObject DustyroomStylized vertex:vertObject alphatest:_Cutoff addshadow exclude_path:deferred
         #include "DustyroomStylizedLighting.cginc"
         #pragma target 3.0
         #pragma require interpolators15
@@ -124,15 +118,5 @@
         ENDCG
     }
     FallBack "Transparent/Cutout/Diffuse"
-    //_FLAT_KIT_BUILT_IN_END_
-    // -----------------------------------------------
-
-    // -----------------------------------------------
-    /*_FLAT_KIT_URP_BEGIN_
-    // This shader is deprecated in URP: please use StylizedSurface.
-    FallBack "FlatKit/Stylized Surface"
-    _FLAT_KIT_URP_END_*/
-    // -----------------------------------------------
-
     CustomEditor "StylizedSurfaceEditor"
 }

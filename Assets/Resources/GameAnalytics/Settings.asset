@@ -26,21 +26,21 @@ MonoBehaviour:
   UserMessagesFailed: 0
   CustomArea: 
   gameKey:
-  - 4fa2fe097a8cabc286094ed610289299
+  - 7b42e75aa879fe57bbf6990f125c9c26
   secretKey:
-  - 27d678c6794d2a1417506cc5fb57934deb1ffeaf
+  - 201758356030135d26b96e9038cb55db0a1aeba5
   Build:
   - 0.1
   SelectedPlatformOrganization:
-  - GA_Agava
+  - LazRedGame
   SelectedPlatformStudio:
-  - GA_Agava
+  - LazRedGame
   SelectedPlatformGame:
-  - Auto-Accident
-  SelectedPlatformGameID: 01020300
-  SelectedOrganization: 01000000
+  - Race Marge Master
+  SelectedPlatformGameID: 67cc0300
+  SelectedOrganization: 02000000
   SelectedStudio: 01000000
-  SelectedGame: 01000000
+  SelectedGame: 0e000000
   NewVersion: 
   Changes: 
   SignUpOpen: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   GameName: Auto-Accident
   OrganizationName: 
   OrganizationIdentifier: 
-  EmailGA: konev.danko@gmail.com
+  EmailGA: lazredgame@gmail.com
   IntroScreen: 0
   InfoLogEditor: 1
   InfoLogBuild: 1

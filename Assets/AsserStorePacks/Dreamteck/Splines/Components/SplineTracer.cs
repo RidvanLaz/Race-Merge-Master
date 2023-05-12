@@ -202,9 +202,13 @@ namespace Dreamteck.Splines
                 double unclippedPercent = UnclipPercent(_result.percent);
                 int index;
                 double lerp;
-                spline.GetSamplingValues(unclippedPercent, out index, out lerp);
-                _finalResult.forward = spline.samples[index].forward;
-                _finalResult.up = spline.samples[index].up;
+
+                if(spline)
+                {
+                    spline.GetSamplingValues(unclippedPercent, out index, out lerp);
+                    _finalResult.forward = spline.samples[index].forward;
+                    _finalResult.up = spline.samples[index].up;
+                }
             }
             motion.targetUser = this;
             motion.splineResult = _finalResult;
