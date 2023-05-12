@@ -91,7 +91,7 @@ public class PostprocessBuildPlayerAppMetrica
                 var frameworkPath = FrameworksDir + '/' + appMetricaFramework + ".xcframework/" + frameworkArch +
                                     '/' + frameworkName;
                 var dstPath = "AppMetricaFrameworks/" + frameworkName;
-                CopyAndReplaceDirectory (frameworkPath, Path.Combine(path, dstPath));
+                CopyAndReplaceDirectory (frameworkPath, System.IO.Path.Combine(path, dstPath));
                 var fileGuid = project.AddFile (dstPath, "Frameworks/" + frameworkName);
                 project.AddFileToBuild (target, fileGuid);
             }
