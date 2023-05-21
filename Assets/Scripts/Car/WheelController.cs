@@ -14,7 +14,7 @@ public class WheelController : MonoBehaviour
     [SerializeField] private Transform _frontRightWheeTransform;
     [SerializeField] private Transform _rearLeftWheelTransform;
     [SerializeField] private Transform _rearRightWheelTransform;
-    [Header("Reinforced Wheels")]
+    [Header("Reinforced WheelsHolder")]
     [SerializeField] private WheelCollider _rearReinforcedWheelSettings;
     [SerializeField] private WheelCollider _frontReinforcedWheelSettings;
     [Header("Sliding wheels")]

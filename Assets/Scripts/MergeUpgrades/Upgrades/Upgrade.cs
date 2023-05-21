@@ -20,6 +20,7 @@ public class Upgrade
     private int _currentLevel;
 
     public event Action<int> LevelChanged;
+    public event Action<int> LevelIncreased;
 
     public string Name => _name;
 
@@ -33,8 +34,12 @@ public class Upgrade
 
     public bool SetLevel(int level)
     {
+        var oldLevel = _currentLevel;
         _currentLevel = Mathf.Clamp(level - 1, 0, MaxLevel - 1);
         LevelChanged?.Invoke(_currentLevel + 1);
+
+        if (oldLevel < _currentLevel)
+            LevelIncreased?.Invoke(_currentLevel);
         return true;
     }
 

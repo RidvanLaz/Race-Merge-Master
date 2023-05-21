@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,6 +13,7 @@ namespace MergeGrid
         [SerializeField] private RectTransform _mergeGridElementsParent;
         [SerializeField] private RectTransform _buyingZone;
         [SerializeField] private SellingZone _sellingZone;
+        [SerializeField] private GameObject _mergeFX;
 
         private List<MergeGridElementView> _currentViews = new List<MergeGridElementView>();
         private Upgrade[] _upgrades;
@@ -100,6 +102,8 @@ namespace MergeGrid
                     _buyingZone.gameObject.SetActive(false);
                     _sellingZone.Open(_currentlyDragging.Data);
                 }
+
+                SoundManager.instance.UIClick.Play();
             }
         }
 
@@ -110,6 +114,7 @@ namespace MergeGrid
             
             if (GetElementsCountWithUpgrade(_currentlyDragging.Data.TargetUpgrade) > 0 && _sellingZone.IsInZone(eventData.position))
             {
+                SoundManager.instance.UIClick.Play();
                 _sellingZone.Sell(_currentlyDragging.Data);
                 _currentViews.Remove(_currentlyDragging);
                 Destroy(_currentlyDragging.gameObject);
@@ -122,17 +127,22 @@ namespace MergeGrid
                 switch (placeResult.result)
                 {
                     case PlacingResult.Place:
-
+                        SoundManager.instance.UIClick.Play();
                         break;
 
 
                     case PlacingResult.Merge:
                         _currentViews.Remove(_currentlyDragging);
+                        SoundManager.instance.Merge.Play();
+                        var fx = Instantiate(_mergeFX, transform);
+                        fx.transform.position = cell.transform.position;
+                        Destroy(fx, 1f);
                         break;
 
 
                     case PlacingResult.Replace:
                         _draggedFrom.TryPlace(placeResult.element);
+                        SoundManager.instance.UIClick.Play();
                         break;
                 }
             }
