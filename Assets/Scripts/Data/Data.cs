@@ -1,4 +1,5 @@
 using System;
+using MergeGrid;
 using UnityEngine;
 
 public class Data : MonoBehaviour
@@ -22,6 +23,8 @@ public class Data : MonoBehaviour
         else
             _options = JsonUtility.FromJson<SaveOptions>(PlayerPrefs.GetString(_dataKeyName));
     }
+
+    public SaveOptions Options => _options;
 
     [ContextMenu("RemoveData")]
     public void RemoveData()
@@ -109,12 +112,19 @@ public class Data : MonoBehaviour
 [Serializable]
 public class SaveOptions
 {
-    public int LevelNumber;
+    public int LevelNumber = 2;
     public int SessionCount;
     public string LastLoginDate;
     public string RegistrationDate;
     public int DisplayedLevelNumber = 1;
     public int Soft;
     public bool PlayerKnowsHowToHandleCarInFlight = false;
+
+    public int KuzovUpgrade = 1;
+    public int WheelsUpgrade = 1;
+    public int EngineUpgrade = 1;
+    public int PriceProgress = 0;
+
+    public MergeGridData MergeGridData = new MergeGridData();
 }
 

@@ -4,14 +4,15 @@ using UnityEngine;
 public class FloatinTextHandler : MonoBehaviour
 {
     [SerializeField] private MMFeedbacks _floatingTextFeedback;
-    [SerializeField] private ScenePointsPool _scenePointsPool;
+    public ScenePointsPool _scenePointsPool;
 
-    private void OnEnable()
+    public void Init(ScenePointsPool scenePointsPool)
     {
+        _scenePointsPool = scenePointsPool;
         _scenePointsPool.PointsWthidrawed += OnPlayFeedbacks;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _scenePointsPool.PointsWthidrawed -= OnPlayFeedbacks;
     }

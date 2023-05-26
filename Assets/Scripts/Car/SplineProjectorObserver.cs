@@ -3,7 +3,7 @@ using Dreamteck.Splines;
 
 public class SplineProjectorObserver : MonoBehaviour
 {
-    [SerializeField] private SplineProjector _splineProjector;
+    public SplineProjector _splineProjector;
 
     public SplineProjector Projector => _splineProjector;
 

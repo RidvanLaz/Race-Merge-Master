@@ -16,8 +16,13 @@ public class ScreensaverSceneManager : MonoBehaviour
         _data.AddSession();
         _data.SetLastLoginDate(DateTime.Now);
         _analytic.SendEventOnGameInitialize(_data.GetSessionCount());
+
+        if (_data.GetLevelIndex() <= 1)
+            _data.SetLevelIndex(2);
+
         _data.Save();
-        SceneManager.LoadScene(_data.GetLevelIndex());
+
+        SceneManager.LoadScene(1);
     }
 
     private void CheckSaveFile()

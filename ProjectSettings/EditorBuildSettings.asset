@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Screensaver.unity
     guid: 2c36c457ca989b14aa2173d0b17ae2eb
   - enabled: 1
+    path: Assets/Scenes/MergeGridTesting.unity
+    guid: bab348cead11fca4596a13307e26bd57
+  - enabled: 1
     path: Assets/Scenes/NEW/Forest_1.unity
     guid: 18bfe224d3f80ee40a9b9ae4ae7fb696
   - enabled: 1

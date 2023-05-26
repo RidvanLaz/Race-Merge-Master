@@ -7,25 +7,26 @@ public class CamerasSwitcher : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _projectorFollowAndLookAtCar;
     [SerializeField] private CinemachineVirtualCamera _projectorFollowAndLookAtProjector;
-    [SerializeField] private Mover _carMover;
-    [SerializeField] private SplineProjectorObserver _projectorObserver;
     [SerializeField] private float _offsetMistake = 0.5f;
     [SerializeField] private float _actionDuration = 2f;
     [SerializeField] private float _rebindDelay = 2f;
+    
+    public Mover CarMover;
+    public SplineProjectorObserver ProjectorObserver;
 
     private Respawner _carRespawner;
     private MMFeedbacks _accelerationFeedBacks; 
 
     private void Awake()
     {
-        _carRespawner = _carMover.GetComponent<Respawner>();
+        _carRespawner = CarMover.GetComponent<Respawner>();
         _accelerationFeedBacks = GetComponent<MMFeedbacks>();
     }
 
     private void OnEnable()
     {
         _carRespawner.Proceed += OnChangeCameraBodyBindingMode;
-        _carMover.Boosted += OnPlayAccelerationEffect;
+        CarMover.Boosted += OnPlayAccelerationEffect;
     }
 
     private void Update()
@@ -36,13 +37,13 @@ public class CamerasSwitcher : MonoBehaviour
     private void OnDisable()
     {
         _carRespawner.Proceed -= OnChangeCameraBodyBindingMode;
-        _carMover.Boosted -= OnPlayAccelerationEffect;
+        CarMover.Boosted -= OnPlayAccelerationEffect;
     }
 
     private void Transit()
     {
-        float criticalOffset = _carMover.GetCriticalOffset() + _offsetMistake;
-        bool isSwitched = _projectorObserver.IsGoesBeyondCriticalDistance(criticalOffset);
+        float criticalOffset = CarMover.GetCriticalOffset() + _offsetMistake;
+        bool isSwitched = ProjectorObserver.IsGoesBeyondCriticalDistance(criticalOffset);
         _projectorFollowAndLookAtProjector.gameObject.SetActive(isSwitched);
     }
 
@@ -58,10 +59,10 @@ public class CamerasSwitcher : MonoBehaviour
         Transform previouseTargetProjectorFollow = _projectorFollowAndLookAtProjector.Follow;
         Transform previouseTargetCarFollow = _projectorFollowAndLookAtCar.Follow;
 
-        _projectorFollowAndLookAtCar.LookAt = _carMover.transform;
-        _projectorFollowAndLookAtProjector.LookAt = _carMover.transform;
-        _projectorFollowAndLookAtCar.Follow = _carMover.transform;
-        _projectorFollowAndLookAtProjector.Follow = _carMover.transform;
+        _projectorFollowAndLookAtCar.LookAt = CarMover.transform;
+        _projectorFollowAndLookAtProjector.LookAt = CarMover.transform;
+        _projectorFollowAndLookAtCar.Follow = CarMover.transform;
+        _projectorFollowAndLookAtProjector.Follow = CarMover.transform;
         _projectorFollowAndLookAtCar.GetCinemachineComponent<CinemachineTransposer>().m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp; 
         _projectorFollowAndLookAtProjector.GetCinemachineComponent<CinemachineTransposer>().m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
         yield return new WaitForSeconds(delay);

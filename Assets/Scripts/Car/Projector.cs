@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class Projector : MonoBehaviour
 {
-    [SerializeField] private Car _car;
+    public Car Car;
 
     private SplineProjector _splineProjector;
 
     private void Awake()
     {
         _splineProjector = GetComponent<SplineProjector>();
-        _splineProjector.projectTarget = _car.transform;
+        _splineProjector.projectTarget = Car.transform;
     }
 
     public Car GetCar()
     {
-        return _car;
+        return Car;
     }
 }

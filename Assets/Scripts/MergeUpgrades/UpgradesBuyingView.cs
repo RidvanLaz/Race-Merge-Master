@@ -19,6 +19,7 @@ public class UpgradesBuyingView : MonoBehaviour
 
     public void Init(Upgrade[] upgrades, Money money)
     {
+        _currentProgress = UpgradesDataHolder.instance.PriceProgress;
         _money = money;
         _money.Updated += UpdateButtons;
         _mergeGrid.Updated += UpdateButtons;
@@ -29,7 +30,7 @@ public class UpgradesBuyingView : MonoBehaviour
             newButton.Init(upgrade);
 
             //calculate price from save
-            newButton.UpdatePrice(_basePrice);
+            newButton.UpdatePrice(CurrentPrice);
             newButton.Clicked += OnButtonClicked;
             _buttons.Add(newButton);
         }
@@ -50,6 +51,7 @@ public class UpgradesBuyingView : MonoBehaviour
         _money.Subtract(CurrentPrice);
         _mergeGrid.AddElement(upgrade);
         _currentProgress++;
+        UpgradesDataHolder.instance.SetPriceProgress(_currentProgress);
         UpdateButtons();
 
         foreach (var upgradeBuyingButton in _buttons)

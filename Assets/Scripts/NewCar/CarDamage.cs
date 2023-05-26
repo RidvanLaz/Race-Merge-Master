@@ -126,7 +126,7 @@ public class CarDamage : MonoBehaviour
                 if(affectedPart == numberMatch.Key)
                 {
                     float deformingPartCurrentHealth = targetMeshRenderer.GetBlendShapeWeight(numberMatch.Value);
-                    targetMeshRenderer.SetBlendShapeWeight(numberMatch.Value, deformingPartCurrentHealth + _deformingForce * _deformationSensitivity);
+                    targetMeshRenderer.SetBlendShapeWeight(numberMatch.Value, Mathf.Min(deformingPartCurrentHealth + _deformingForce * _deformationSensitivity, 100f));
                     if(_effectsGemerator)
                         _effectsGemerator.Play(position);
                 }

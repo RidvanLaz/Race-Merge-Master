@@ -9,9 +9,9 @@ using UnityEngine;
 [RequireComponent(typeof(WheelsSkidEffects))]
 public class Respawner : MonoBehaviour
 {
-    [SerializeField] private CarsObserver _carsObserver;
+    public CarsObserver _carsObserver;
     [SerializeField] private float _respawnTime = 2f;
-    [SerializeField] private Transform _respawnPoint;
+    public Transform _respawnPoint;
     [SerializeField] private List<GameObject> _objectsToReplaceLayer;
     [SerializeField] private float _safeDistanceForSafeMode = 5f;
     [SerializeField] private float _criticalHorizontalOffset = 10f;

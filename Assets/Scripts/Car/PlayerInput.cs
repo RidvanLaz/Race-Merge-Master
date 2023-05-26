@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Car))]
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private VariableJoystick _joystick;
+    public VariableJoystick _joystick;
     [SerializeField] private float _brakingDragForce = 0.03f;
     /*    [SerializeField] private float _maxMagnitudeToTurn = 10f;*/
     [SerializeField] private float _maxFrameJoysticVelocity = 0.5f;

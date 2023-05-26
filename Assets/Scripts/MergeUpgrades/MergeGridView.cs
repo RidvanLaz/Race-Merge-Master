@@ -1,11 +1,25 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace MergeGrid
 {
+    [Serializable]
+    public class MergeGridData
+    {
+        [Serializable]
+        public class CellContent
+        {
+            public int level;
+            public int upgradeIndex;
+        }
+
+        public CellContent[] Cells;
+    }
+
     public class MergeGridView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
         [SerializeField] private List<CellView> _cells;
@@ -16,11 +30,12 @@ namespace MergeGrid
         [SerializeField] private GameObject _mergeFX;
 
         private List<MergeGridElementView> _currentViews = new List<MergeGridElementView>();
-        private Upgrade[] _upgrades;
+        private List<Upgrade> _upgrades;
         private MergeGridElementView _currentlyDragging;
         private CellView _draggedFrom;
         private Vector3 _dragPosition;
         private Money _money;
+        private MergeGridData _data;
 
         public event Action Updated;
 
@@ -35,22 +50,50 @@ namespace MergeGrid
 
         public void Init(Upgrade[] upgrades, Money money)
         {
+            var data = UpgradesDataHolder.instance.GetGridData();
+            if (data.Cells == null || data.Cells.Length != _cells.Count)
+            {
+                data.Cells = new MergeGridData.CellContent[_cells.Count];
+
+                for (int i = 0; i < upgrades.Length; i++)
+                {
+                    data.Cells[i] = new MergeGridData.CellContent() {level = upgrades[i].CurrentLevel, upgradeIndex = i};
+                }
+            }
+
+            _data = data;
             _money = money;
-            _upgrades = upgrades;
+            _upgrades = upgrades.ToList();
             _sellingZone.Init(_money);
 
-            foreach (var upgrade in upgrades)
+            for (int i = 0; i < _data.Cells.Length; i++)
             {
-                CreateElement(upgrade, 1, _cells[_currentViews.Count]);
+                if (_data.Cells[i] != null && _data.Cells[i].level > 0)
+                    CreateElement(_upgrades[_data.Cells[i].upgradeIndex], _data.Cells[i].level, _cells[i]);
             }
+
             UpdateUpgrades();
         }
 
         public void AddElement(Upgrade upgrade)
         {
             CreateElement(upgrade, 1, GetFirstEmptyCell());
-            Updated?.Invoke();
+            UpdateCellData();
             UpdateUpgrades();
+        }
+
+        private void UpdateCellData()
+        {
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                if (_cells[i].HasContent)
+                    _data.Cells[i] = new MergeGridData.CellContent(){upgradeIndex = _upgrades.IndexOf(_cells[i].Content.Data.TargetUpgrade), level = _cells[i].Content.Data.Level};
+                else
+                    _data.Cells[i] = null;
+            }
+
+            UpgradesDataHolder.instance.SaveGrid(_data);
+            Updated?.Invoke();
         }
 
         private int GetElementsCountWithUpgrade(Upgrade upgrade)
@@ -156,7 +199,7 @@ namespace MergeGrid
             _draggedFrom = null;
             _currentlyDragging = null;
             _sellingZone.gameObject.SetActive(false);
-            Updated?.Invoke();
+            UpdateCellData();
 
             UpdateUpgrades();
         }

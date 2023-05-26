@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraPointFollover : MonoBehaviour
 {
-    [SerializeField] private Transform _anchor;
+    public Transform _anchor;
     [SerializeField] private float _speed;
     
     private Rigidbody _rigidbody;

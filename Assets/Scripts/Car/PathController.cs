@@ -6,12 +6,12 @@ using UnityEngine;
 public class PathController : MonoBehaviour
 {
     [Header("Car Patch")]
-    [SerializeField] private SplineComputer _spline;
+    public SplineComputer _spline;
     [Header("Generation")]
     [SerializeField] private GameObject _pathPrefab;
-    [SerializeField] private Transform _instancePlace;
+    public Transform _instancePlace;
     [Header("Path")]
-    [SerializeField] private Path _path;
+    public Path _path;
 
     private float _newTargetOffset;
     private float _offsetSpeed;

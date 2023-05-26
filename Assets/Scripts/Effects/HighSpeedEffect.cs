@@ -5,12 +5,12 @@ public class HighSpeedEffect : MonoBehaviour
     [Header("Effects")]
     [SerializeField] private ParticleSystem[] _windEffects;
     [Header("Options")]
-    [SerializeField] private Mover _carMover;
+    public Mover CarMover;
     [SerializeField] private float _emittingSpeed = 20f;
 
     private void Update()
     {
-        if(_carMover.GetCurrentSpeed() > _emittingSpeed)
+        if(CarMover.GetCurrentSpeed() > _emittingSpeed)
         {
             for (int i = 0; i < _windEffects.Length; i++)
             {

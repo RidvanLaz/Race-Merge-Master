@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NameTextRotater : MonoBehaviour
 {
-    [SerializeField] private Transform _lookTarget;
+    public Transform _lookTarget;
 
     private void Update()
     {

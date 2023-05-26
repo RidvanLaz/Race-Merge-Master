@@ -21,7 +21,7 @@ public class InteractionProcessor : MonoBehaviour
     {
         if (collision.gameObject.transform.parent)
         {
-            if (collision.gameObject.transform.parent.transform.parent == _transform.parent.transform.parent)
+            if (collision.gameObject.transform.parent.parent == _transform.parent.parent)
                 return;
         }
 

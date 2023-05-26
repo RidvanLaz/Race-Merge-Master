@@ -39,13 +39,13 @@ public class GameSceneManager : MonoBehaviour
     {
         _analytic.SendEventOnLevelComplete(_data.GetDisplayedLevelNumber());
         if (SceneManager.GetActiveScene().buildIndex + 1 >= SceneManager.sceneCountInBuildSettings)
-            _nextLevelIndex = 1;
+            _nextLevelIndex = 2;
         else
             _nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
         _data.SetLevelIndex(_nextLevelIndex);
         _data.AddDisplayedLevelNumber();
         _data.Save();
-        SceneManager.LoadScene(_nextLevelIndex);
+        SceneManager.LoadScene(1);
     }
 
     public void ReloadScene()

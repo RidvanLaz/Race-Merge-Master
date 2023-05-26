@@ -135,7 +135,7 @@ public class WheelController : MonoBehaviour
         {
             wheelCollider.GetWorldPose(out pos, out rot);
             wheelTransform.rotation = rot;
-            wheelTransform.position = pos;
+            //wheelTransform.position = pos;
         }
     }
 }
