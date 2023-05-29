@@ -54,4 +54,9 @@ public class AnalyticManager : MonoBehaviour
         _appMetricaObject.OnGameExit(registrationDate, sessionCount, daysInGame,currentSoft);
         _gameAnalyticsObject.OnGameExit(registrationDate, sessionCount, daysInGame,currentSoft);
     }
+
+    public void SendUpgradeEvent(string upgradeType)
+    {
+        _appMetricaObject.OnUpgrade(upgradeType);
+    }
 }

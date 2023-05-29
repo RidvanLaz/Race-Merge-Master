@@ -22,6 +22,17 @@ public class Data : MonoBehaviour
         }
         else
             _options = JsonUtility.FromJson<SaveOptions>(PlayerPrefs.GetString(_dataKeyName));
+
+        if (_options.IsTutorial)
+        {
+            _options.Soft = 0;
+            _options.KuzovUpgrade = 1;
+            _options.EngineUpgrade = 1;
+            _options.WheelsUpgrade = 1;
+            _options.PriceProgress = 0;
+            _options.MergeGridData = new MergeGridData();
+            Save();
+        }
     }
 
     public SaveOptions Options => _options;
@@ -119,6 +130,7 @@ public class SaveOptions
     public int DisplayedLevelNumber = 1;
     public int Soft;
     public bool PlayerKnowsHowToHandleCarInFlight = false;
+    public bool IsTutorial = true;
 
     public int KuzovUpgrade = 1;
     public int WheelsUpgrade = 1;

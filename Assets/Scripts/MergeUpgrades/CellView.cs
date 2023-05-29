@@ -15,8 +15,10 @@ namespace MergeGrid
         [SerializeField] private Color _selectedColor;
 
         private MergeGridElementView _content;
+        private bool _isMarkedAsMain;
 
         public bool HasContent => _content != null;
+        public bool IsMarkedAsMain => _isMarkedAsMain;
 
         public MergeGridElementView Content => _content;
 
@@ -70,6 +72,7 @@ namespace MergeGrid
 
         public void MarkAsMain(bool isMain)
         {
+            _isMarkedAsMain = isMain;
             _back.color = isMain ? _selectedColor : _standartColor;
         }
     }

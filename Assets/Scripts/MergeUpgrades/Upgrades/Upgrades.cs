@@ -14,6 +14,9 @@ public class Upgrades : MonoBehaviour
     [SerializeField] private UpgradesView _upgradesView;
     [SerializeField] private UpgradesGalary _galary;
     [SerializeField] private UpgradesFXReaction _upgradeFX;
+    [SerializeField] private AnalyticManager _analytic;
+    [SerializeField] private MergeTutorial _mergeTutorial;
+    [SerializeField] private Data _data;
 
     [Space] 
     [SerializeField] private CarKuzovUpgrade _carKuzovUpgrade;
@@ -26,7 +29,21 @@ public class Upgrades : MonoBehaviour
     {
         yield return null;
 
-        _money = new Money(PointsTransmitter.Instance.GetWalletPoints());
+        if (_data.Options.IsTutorial)
+        {
+            var neededMoney = 0;
+
+            for (int i = 0; i < _upgrades.Length; i++)
+            {
+                neededMoney += _upgradesBuyingView.BasePrice + _upgradesBuyingView.AdditionalPrice * i;
+            }
+
+            _money = new Money(PointsTransmitter.Instance.GetWalletPoints() + neededMoney);
+        }
+        else
+        {
+            _money = new Money(PointsTransmitter.Instance.GetWalletPoints());
+        }
 
         _upgrades[0].Init(UpgradesDataHolder.instance.GetKuzovUpgrade() - 1);
         _upgrades[1].Init(UpgradesDataHolder.instance.GetEngineUpgrade() - 1);
@@ -42,21 +59,25 @@ public class Upgrades : MonoBehaviour
         _upgradesView.Init(_upgrades);
         _galary.Init(_upgrades);
         _upgradeFX.Init(_upgrades);
+        _mergeTutorial.Init(_upgrades, _mergeGrid);
 
         _carKuzovUpgrade.Init(_upgrades[0], _upgrades[2]);
     }
 
     private void UpdateKuzovUpgrade(int newLevel)
     {
+        _analytic.SendUpgradeEvent("Kuzov");
         UpgradesDataHolder.instance.SaveKuzovUpgrade(newLevel);
     }
 
     private void UpdateEngineUpgrade(int newLevel)
     {
+        _analytic.SendUpgradeEvent("Engine");
         UpgradesDataHolder.instance.SaveEngineUpgrade(newLevel);
     }
     private void UpdateWheelsUpgrade(int newLevel)
     {
+        _analytic.SendUpgradeEvent("Wheels");
         UpgradesDataHolder.instance.SaveWheelsUpgrade(newLevel);
     }
 
@@ -74,6 +95,12 @@ public class Upgrades : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        if (_data.Options.IsTutorial)
+        {
+            _data.Options.IsTutorial = false;
+            _data.Save();
+        }
+
         SceneManager.LoadScene(UpgradesDataHolder.instance.NextSceneIndex);
     }
 }

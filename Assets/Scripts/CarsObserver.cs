@@ -137,6 +137,8 @@ public class CarsObserver : MonoBehaviour
                 ActivateAfterPlayerWin?.Invoke();
                 Invoke(nameof(ActivateAfterAWhileAfterFinish), _activationTime);
                 DeterminePlacesByDistanceToFinishLine();
+
+                StartCoroutine(TryShowAdRoutine());
             }
         }
         else
@@ -149,8 +151,16 @@ public class CarsObserver : MonoBehaviour
                 ActivateAfterPlayerLose?.Invoke();
                 DeterminePlacesByDistanceToFinishLine();
                 Invoke(nameof(ActivateAfterAWhileAfterFinish), _activationTime);
+
+                StartCoroutine(TryShowAdRoutine());
             }
         }
+    }
+
+    private IEnumerator TryShowAdRoutine()
+    {
+        yield return new WaitForSeconds(_activationTime / 0.5f);
+        InterstitialShower.instance.TryShow();
     }
 
     private void RemoveCurrentCarFromTheList(Car car)

@@ -22,7 +22,10 @@ public class ScreensaverSceneManager : MonoBehaviour
 
         _data.Save();
 
-        SceneManager.LoadScene(1);
+        if (_data.Options.IsTutorial)
+            SceneManager.LoadScene(2);
+        else
+            SceneManager.LoadScene(1);
     }
 
     private void CheckSaveFile()

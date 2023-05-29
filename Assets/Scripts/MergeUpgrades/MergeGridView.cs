@@ -28,6 +28,8 @@ namespace MergeGrid
         [SerializeField] private RectTransform _buyingZone;
         [SerializeField] private SellingZone _sellingZone;
         [SerializeField] private GameObject _mergeFX;
+        [SerializeField] private Data _safeData;
+        [SerializeField] private MergeTutorial _mergeTutorial;
 
         private List<MergeGridElementView> _currentViews = new List<MergeGridElementView>();
         private List<Upgrade> _upgrades;
@@ -46,6 +48,23 @@ namespace MergeGrid
                 var cell = _cells.Find(x => x.HasContent == false);
                 return cell != null;
             }
+        }
+
+        public int CurrentElementsAmount => _currentViews.Count;
+
+        public List<CellView> GetCellForUpgrade(Upgrade targetUpgrade)
+        {
+            var cells = new List<CellView>();
+
+            foreach (var cell in _cells)
+            {
+                if (cell.HasContent && cell.Content.Data.TargetUpgrade == targetUpgrade)
+                {
+                    cells.Add(cell);
+                }
+            }
+
+            return cells;
         }
 
         public void Init(Upgrade[] upgrades, Money money)
@@ -128,7 +147,7 @@ namespace MergeGrid
 
             var clickCell = GetClosestCell(eventData.position);
 
-            if (clickCell.HasContent)
+            if (clickCell.HasContent && (_safeData.Options.IsTutorial == false || (_mergeTutorial.CurrentUpgradeToMerge != null && clickCell.IsMarkedAsMain == false && _safeData.Options.IsTutorial && clickCell.Content.Data.TargetUpgrade == _mergeTutorial.CurrentUpgradeToMerge)))
             {
                 _dragPosition = eventData.position;
                 _draggedFrom = clickCell;
@@ -140,7 +159,7 @@ namespace MergeGrid
                     cellView.SetDark(clickCell != cellView);
                 }
 
-                if (GetElementsCountWithUpgrade(_currentlyDragging.Data.TargetUpgrade) > 0)
+                if (GetElementsCountWithUpgrade(_currentlyDragging.Data.TargetUpgrade) > 0 && _safeData.Options.IsTutorial == false)
                 {
                     _buyingZone.gameObject.SetActive(false);
                     _sellingZone.Open(_currentlyDragging.Data);

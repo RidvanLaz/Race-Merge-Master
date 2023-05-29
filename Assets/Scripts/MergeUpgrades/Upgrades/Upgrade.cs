@@ -36,7 +36,9 @@ public class Upgrade
     {
         var oldLevel = _currentLevel;
         _currentLevel = Mathf.Clamp(level - 1, 0, MaxLevel - 1);
-        LevelChanged?.Invoke(_currentLevel + 1);
+
+        if (oldLevel != _currentLevel)
+            LevelChanged?.Invoke(_currentLevel + 1);
 
         if (oldLevel < _currentLevel)
             LevelIncreased?.Invoke(_currentLevel);

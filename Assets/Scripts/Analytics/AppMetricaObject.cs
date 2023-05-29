@@ -92,6 +92,18 @@ public class AppMetricaObject : ScriptableObject
             {"current_soft", currentSoft }
         });
     }
+    
+    public void OnUpgrade(string upgrade)
+    {
+        var parameters = new Dictionary<string, object>();
+        parameters["upgrade_type"] = upgrade;
 
+        AppMetrica.Instance.ReportEvent(
+            "upgrade",
+            parameters
+        );
 
+        AppMetrica.Instance.SendEventsBuffer();
+        Debug.Log($"Analytics Event: upgrade - {upgrade}");
+    }
 }
