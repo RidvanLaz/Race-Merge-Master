@@ -58,5 +58,6 @@ public class AnalyticManager : MonoBehaviour
     public void SendUpgradeEvent(string upgradeType)
     {
         _appMetricaObject.OnUpgrade(upgradeType);
+        _gameAnalyticsObject.OnUpgrade(upgradeType);
     }
 }

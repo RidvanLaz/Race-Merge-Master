@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 1774508087}
   - component: {fileID: 1774508086}
   m_Layer: 0
-  m_Name: InterstetialAnalytics
+  m_Name: InterstetialShower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dontDestryOnLoad: 1
   _overrideInstance: 0
-  _levelsToShowAd: 1
+  _levelsToShowAd: 6
 --- !u!4 &1774508087
 Transform:
   m_ObjectHideFlags: 0

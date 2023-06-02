@@ -94,4 +94,14 @@ public class GameAnalyticsObject : ScriptableObject
             {"current_soft", currentSoft }
         });
     }
+
+    public void OnUpgrade(string upgradeType)
+    {
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Undefined, "upgrade", new Dictionary<string, object>()
+        {
+            {"upgrade_type", upgradeType }
+        });
+
+        Debug.Log($"Game Analytics Event: upgrade - {upgradeType}");
+    }
 }
