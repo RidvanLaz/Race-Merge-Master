@@ -8272,6 +8272,38 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 2.4797208
       objectReference: {fileID: 0}
+    - target: {fileID: -132554305716376216, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1fb291daec4004c5484e2ad9083b0a2e, type: 2}
+    - target: {fileID: -132554305716376216, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab292278b7740408bb1c2156e0c6e254, type: 2}
+    - target: {fileID: -132554305716376216, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: f3a942ee00daf420f8be3eac7e34ebb1, type: 2}
+    - target: {fileID: -132554305716376216, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 86a0d702314824a5c88f3a9d4c122bb3, type: 2}
+    - target: {fileID: -132554305716376216, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: ea34d8320ed1a4c10a2edef13ed2f74e, type: 2}
+    - target: {fileID: -132554305716376216, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: c859df978e55043f192db9e8fcf67a02, type: 2}
+    - target: {fileID: -132554305716376216, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 83879dc71dbd3496d932d6a633fb1263, type: 2}
+    - target: {fileID: -132554305716376216, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
+      propertyPath: m_Materials.Array.data[7]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d07347fca2d44f389853f30b427a3f1, type: 2}
     - target: {fileID: 919132149155446097, guid: ec4fdbfe0eca4fa4c8b27174299d9565, type: 3}
       propertyPath: m_Name
       value: 4_Audi A7
