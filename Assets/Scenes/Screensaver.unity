@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44407046, g: 0.49331486, b: 0.57238823, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ac977b78441c046881e90cf379f363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  admobInterstitialID: ca-app-pub-3890298572306120/9374521434
-  admobRewardedID: ca-app-pub-3890298572306120/8001730012
-  gameID: 5248355
+  admobInterstitialID: ca-app-pub-3890298572306120/2863866591
+  admobRewardedID: ca-app-pub-3890298572306120/4552901524
+  gameID: 5276687
   unityInterstitialID: Interstitial_Android
   unityRewardedID: Rewarded_Android
 --- !u!1001 &136972363
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dontDestryOnLoad: 1
   _overrideInstance: 0
-  _levelsToShowAd: 6
+  _levelsToShowAd: 2
 --- !u!4 &1774508087
 Transform:
   m_ObjectHideFlags: 0
